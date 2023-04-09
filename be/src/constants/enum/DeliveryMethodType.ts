@@ -1,0 +1,5 @@
+export enum DeliveryMethodType {
+    CLICK_AND_COLLECT = 'CLICK_AND_COLLECT',
+    HOME_DELIVERY = 'HOME_DELIVERY',
+    LOCKER_DELIVERY = 'LOCKER_DELIVERY'
+}
