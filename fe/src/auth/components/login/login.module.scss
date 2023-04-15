@@ -1,0 +1,23 @@
+.component {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 80px;
+
+    form {
+        .group {
+            .input {
+                margin-bottom: 30px;
+            }
+        }
+        div.actions {
+            display: flex;
+            flex-direction: column;
+            a {
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+                padding: 10px;
+            }
+        }
+    }
+}
