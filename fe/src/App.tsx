@@ -8,6 +8,8 @@ import classes from './App.module.scss';
 import Navbar from './shared/components/navbar/navbar';
 import { routes } from './shared/constants/routes';
 import Products from './shopping/components/products/products';
+import Login from './auth/components/login/login';
+import Signup from './auth/components/sign-up/signup';
 
 const defaultMaterialTheme = createTheme();
 
@@ -18,6 +20,8 @@ function App() {
       <ThemeProvider theme={defaultMaterialTheme}>
         <Navbar/>
         <Routes>
+          <Route path={routes.login} element={<Login />} />
+          <Route path={routes.signup} element={<Signup />} />
           <Route path={routes.home} element={<Products />} />
           <Route path="*" element={<Navigate to={routes.home}/>} />
         </Routes>

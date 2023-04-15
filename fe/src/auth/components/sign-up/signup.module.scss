@@ -1,0 +1,14 @@
+.component {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 80px;
+
+    form {
+        .group {
+            .input {
+                margin-bottom: 30px;
+            }
+        }
+    }
+}
