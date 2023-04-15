@@ -1,0 +1,20 @@
+.component {
+    top: 80px;
+    position: sticky;
+        
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    .link {
+        font-size: 20px;
+        padding: 0 6px;
+        border-radius: 3px;
+
+        &.active {
+            background: #1976d2;
+            color: white;
+            font-weight: bold;
+        }
+    }
+}
