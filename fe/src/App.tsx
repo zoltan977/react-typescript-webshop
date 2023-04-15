@@ -1,9 +1,26 @@
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
+import { createTheme, ThemeProvider } from '@mui/material';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
 import classes from './App.module.scss';
+import { routes } from './shared/constants/routes';
+import Products from './shopping/components/products/products';
+
+const defaultMaterialTheme = createTheme();
 
 function App() {
+  
   return (
     <div className={classes.component}>
-      app works
+      <ThemeProvider theme={defaultMaterialTheme}>
+        <Routes>
+          <Route path={routes.home} element={<Products />} />
+          <Route path="*" element={<Navigate to={routes.home}/>} />
+        </Routes>
+        <ToastContainer />
+      </ThemeProvider>
     </div>
   );
 }
