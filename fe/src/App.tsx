@@ -18,6 +18,7 @@ import { useCurrentUser } from './shared/hooks/useCurrentUser';
 import { authActions } from './auth/store/actions';
 import Private from './shared/components/routing/private/private';
 import UserAccount from './auth/components/user-account/user-account';
+import CheckOut from './shopping/components/check-out/check-out';
 
 const defaultMaterialTheme = createTheme();
 
@@ -48,6 +49,7 @@ function App() {
           <Route path={routes.cart} element={<ShoppingCart />} />
           <Route element={<Private />}>
             <Route path={routes.userAccount} element={<UserAccount />} />
+            <Route path={routes.checkOut} element={<CheckOut />} />
           </Route>
           <Route path="*" element={<Navigate to={routes.home}/>} />
         </Routes>
