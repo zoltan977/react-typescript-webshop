@@ -22,6 +22,8 @@ import CheckOut from './shopping/components/check-out/check-out';
 import OrderList from './shared/components/order-list/order-list';
 import OrderDetails from './shared/components/order-list/order-details/order-details';
 import Admin from './shared/components/routing/admin/admin';
+import AdminProducts from './admin/components/admin-products/admin-products';
+import ProductForm from './admin/components/admin-products/product-form/product-form';
 
 const defaultMaterialTheme = createTheme();
 
@@ -59,6 +61,9 @@ function App() {
           <Route element={<Admin />}>
             <Route path={routes.adminOrders} element={<OrderList />} />
             <Route path={routes.adminOrderDetails} element={<OrderDetails />} />
+            <Route path={routes.adminProducts} element={<AdminProducts />} />
+            <Route path={routes.adminProductNew} element={<ProductForm />} />
+            <Route path={routes.adminProductDetails} element={<ProductForm />} />
           </Route>
           <Route path="*" element={<Navigate to={routes.home}/>} />
         </Routes>
