@@ -1,0 +1,20 @@
+.component {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-height: 600px;
+    
+    & > p, & > div {
+        display: flex;
+        align-items: center;
+
+        span:first-child {
+            min-width: 110px;
+            max-width: 110px;
+            margin-right: 30px;
+            font-weight: bold;
+        }
+    }
+}

@@ -19,6 +19,9 @@ import { authActions } from './auth/store/actions';
 import Private from './shared/components/routing/private/private';
 import UserAccount from './auth/components/user-account/user-account';
 import CheckOut from './shopping/components/check-out/check-out';
+import OrderList from './shared/components/order-list/order-list';
+import OrderDetails from './shared/components/order-list/order-details/order-details';
+import Admin from './shared/components/routing/admin/admin';
 
 const defaultMaterialTheme = createTheme();
 
@@ -50,6 +53,12 @@ function App() {
           <Route element={<Private />}>
             <Route path={routes.userAccount} element={<UserAccount />} />
             <Route path={routes.checkOut} element={<CheckOut />} />
+            <Route path={routes.myOrders} element={<OrderList />} />
+            <Route path={routes.myOrderDetails} element={<OrderDetails />} />
+          </Route>
+          <Route element={<Admin />}>
+            <Route path={routes.adminOrders} element={<OrderList />} />
+            <Route path={routes.adminOrderDetails} element={<OrderDetails />} />
           </Route>
           <Route path="*" element={<Navigate to={routes.home}/>} />
         </Routes>
