@@ -10,11 +10,20 @@ import { routes } from './shared/constants/routes';
 import Products from './shopping/components/products/products';
 import Login from './auth/components/login/login';
 import Signup from './auth/components/sign-up/signup';
+import { useEffect } from 'react';
+import { shoppingActions } from './shopping/store/actions';
+import {useDispatch} from 'react-redux';
+import ShoppingCart from './shopping/components/shopping-cart/shopping-cart';
 
 const defaultMaterialTheme = createTheme();
 
 function App() {
+  const dispatch = useDispatch();
   
+  useEffect(() => {
+    dispatch(shoppingActions.getShoppingCart())
+  }, [])
+
   return (
     <div className={classes.component}>
       <ThemeProvider theme={defaultMaterialTheme}>
@@ -23,6 +32,7 @@ function App() {
           <Route path={routes.login} element={<Login />} />
           <Route path={routes.signup} element={<Signup />} />
           <Route path={routes.home} element={<Products />} />
+          <Route path={routes.cart} element={<ShoppingCart />} />
           <Route path="*" element={<Navigate to={routes.home}/>} />
         </Routes>
         <ToastContainer />

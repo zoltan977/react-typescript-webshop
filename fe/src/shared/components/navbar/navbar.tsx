@@ -1,6 +1,6 @@
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { MenuItem } from '@mui/material';
+import { Badge, MenuItem } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -13,11 +13,14 @@ import { logout as authLogout } from '../../../auth/services/auth.service';
 import { routes } from '../../constants/routes';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
 import classes from './navbar.module.scss';
+import { useSelector } from 'react-redux';
+import { getShoppingCart } from '../../../shopping/store/selectors';
 
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const currentUser = useCurrentUser();
+  const shoppingCart = useSelector(getShoppingCart);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -73,7 +76,9 @@ export default function Navbar() {
             aria-label="shopping cart"
             color="inherit"
           >
-            <ShoppingCartIcon sx={{fontSize: 40, color: 'black'}} />
+            <Badge badgeContent={shoppingCart.itemCount} color="secondary">
+              <ShoppingCartIcon sx={{fontSize: 40, color: 'black'}} />
+            </Badge>
           </IconButton>
           <Menu
             id="menu-appbar"
