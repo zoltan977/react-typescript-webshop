@@ -2,11 +2,13 @@ import './index.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import history from './shared/utils/history';
 
 import App from './App';
 import { overwriteLocalstorageMethodsToDetectStorageChanges } from './overwriteLocalstorage';
 import reportWebVitals from './reportWebVitals';
+import storeConfig from './storeConfig';
 import ErrorBoundary from './shared/components/errors/errorBoundary/errorBoundary';
 import CustomRouter from './shared/components/routing/custom-router/custom-router';
 
@@ -19,7 +21,9 @@ root.render(
   <React.StrictMode>
     <CustomRouter history={history}>
       <ErrorBoundary>
-        <App />
+        <Provider store={storeConfig}>
+          <App />
+        </Provider>
       </ErrorBoundary>
     </CustomRouter>
   </React.StrictMode>
