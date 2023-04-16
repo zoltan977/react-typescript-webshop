@@ -1,0 +1,26 @@
+.component {
+    flex: 1 1 50%;
+    min-width: 350px;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+    
+    form {
+        .card {
+            min-width: 350px;
+            max-width: 600px;
+            margin-bottom: 20px;
+    
+            .cardContent {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                
+                .group {
+                    flex: 1;
+                }
+                
+            }
+        }
+    }
+}
