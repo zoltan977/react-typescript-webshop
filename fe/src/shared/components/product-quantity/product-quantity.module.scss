@@ -1,0 +1,29 @@
+.component {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
+    p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        width: 100%;
+        white-space: nowrap;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    &.small {
+        p {
+            width: unset;
+            padding: 0 20px;
+        }
+
+        button {
+            min-width: unset;
+            height: 25px;
+            width: 25px;
+            padding: 0;
+        }
+    }
+}
