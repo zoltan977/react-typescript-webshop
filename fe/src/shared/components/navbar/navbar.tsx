@@ -1,3 +1,6 @@
+import 'animate.css/animate.min.css';
+import classes from './navbar.module.scss';
+
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge, MenuItem } from '@mui/material';
@@ -6,21 +9,58 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import classnames from 'classnames';
+import { useEffect, useState, AnimationEvent } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 
 import { logout as authLogout } from '../../../auth/services/auth.service';
+import { getShoppingCart } from '../../../shopping/store/selectors';
 import { routes } from '../../constants/routes';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
-import classes from './navbar.module.scss';
-import { useSelector } from 'react-redux';
-import { getShoppingCart } from '../../../shopping/store/selectors';
 
+const mapRouteToPageTitle: Record<string, string> = {
+  '/login': 'Belépés',
+  '/signup': 'Regisztráció',
+  '/cart': 'Bevásárló kosár',
+  '/check-out': 'Megrendelés',
+  '/my/orders': 'Megrendeléseim',
+  '/user-account': 'Fiókom',
+  '/admin/orders': 'Összes megrendelés',
+  '/admin/orders/order-details': 'Megrendelés részletei',
+  '/my/orders/order-details': 'Megrendelés részletei',
+  '/admin/products': 'Összes termék',
+  '/admin/products/product-details': 'Termék szerkesztése',
+  '/admin/products/product-details/new': 'Termék hozzáadása',
+}
+
+const getPageTitleFromRoute = (path: string): string => {
+  let title = "Home";
+  for (const route in mapRouteToPageTitle) {
+    if(path.includes(route)) {
+      title = mapRouteToPageTitle[route]
+    }
+  }
+  return title;
+}
 
 export default function Navbar() {
+  const pathname = useLocation().pathname;
+  const [prevPathname, setPrevPathname] = useState("");
+  const [titleAnimationState, setTitleAnimationState] = useState("")
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const currentUser = useCurrentUser();
   const shoppingCart = useSelector(getShoppingCart);
+
+
+  const onTitleAnimationEnd = (e: AnimationEvent<HTMLDivElement>) => {
+    if (e.animationName.includes("Out")) {
+      setPrevPathname(pathname);
+      setTitleAnimationState("flyIn");
+    } else {
+      setTitleAnimationState("");
+    }
+  };
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -35,6 +75,14 @@ export default function Navbar() {
     handleClose();
   }
 
+  useEffect(() => {
+    if (!prevPathname) {
+      setPrevPathname(pathname);
+    } else if (prevPathname !== pathname) {
+      setTitleAnimationState("flyOut");
+    }
+  }, [pathname])
+  
 
   return (
       <AppBar position="fixed">
@@ -63,11 +111,18 @@ export default function Navbar() {
             </MenuItem>
           }
           <Typography 
+            onAnimationEnd={onTitleAnimationEnd}
+            className={classnames({
+              ["animate__animated"]: !!titleAnimationState,
+              ["animate__faster"]: !!titleAnimationState,
+              [`animate__bounceInRight`]: titleAnimationState === "flyIn",
+              [`animate__bounceOutLeft`]: titleAnimationState === "flyOut",
+            })}
             variant="h6" 
             component="div" 
             sx={{ flexGrow: 1, textAlign: 'center' }}
             >
-              Webshop
+              {getPageTitleFromRoute(prevPathname)}
           </Typography>
           <IconButton
             component={Link}
