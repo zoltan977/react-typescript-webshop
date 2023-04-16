@@ -1,0 +1,67 @@
+.component {
+    padding: 80px 20px 20px 20px;
+    width: fit-content;
+    min-width: 66%;
+
+    table {
+        width: 100%;
+        table-layout: auto !important;
+
+        tbody, thead {
+            tr {
+                td:nth-child(1), th:nth-child(1) {
+                    width: fit-content !important;
+                    min-width: 1px !important;
+                }
+                td:nth-child(2), th:nth-child(2) {
+                    @media screen and (min-width: 751px) and (max-width: 1100px) {
+                        max-width: 70px !important;
+                        min-width: 70px !important;    
+                    }
+                    @media screen and (min-width: 1101px) and (max-width: 1500px) {
+                        max-width: 40px !important;
+                        min-width: 40px !important;    
+                    }
+                    @media screen and (min-width: 1501px) {
+                        max-width: 30px !important;
+                        min-width: 30px !important;    
+                    }
+                    max-width: 100px !important;
+                    min-width: 100px !important;
+
+                    width: fit-content !important;
+                    padding: 16px 0 !important;
+                    text-align: center;
+                    white-space: nowrap;
+                }
+                td:nth-child(3), th:nth-child(3) {
+                    @media screen and (min-width: 751px) and (max-width: 1100px) {
+                        max-width: 70px !important;
+                        min-width: 70px !important;    
+                    }
+                    @media screen and (min-width: 1101px) and (max-width: 1500px) {
+                        max-width: 40px !important;
+                        min-width: 40px !important;    
+                    }
+                    @media screen and (min-width: 1501px) {
+                        max-width: 30px !important;
+                        min-width: 30px !important;    
+                    }
+                    max-width: 100px !important;
+                    min-width: 100px !important;
+
+                    width: fit-content !important;
+                    padding: 16px 0 !important;
+                    text-align: center;
+                }
+                td, th {
+                    font-family: Arial, Helvetica, sans-serif !important;
+                    font-size: 16px;
+                }
+                th {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
