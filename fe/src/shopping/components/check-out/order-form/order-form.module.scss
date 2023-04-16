@@ -1,0 +1,11 @@
+.component {
+    .group {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .input {
+            padding-right: 9px !important;
+        }
+    }
+}

@@ -1,0 +1,53 @@
+.component {
+    padding-top: 80px;
+    overflow-x: hidden;
+    box-sizing: border-box;
+
+    form {
+        width: 300vw;
+        overflow-x: hidden;
+        position: relative;
+        box-sizing: border-box;
+
+        display: flex;
+        align-items: flex-start;
+
+        transition: left 0.5s;
+
+        .step1 {
+            padding-right: 20px;
+            box-sizing: border-box;
+            width: 100vw;
+            .core {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+                & > * {
+                    &:nth-child(1) {
+                        flex: 1;
+                        min-width: 300px;
+                        max-width: 600px;
+                        padding: 20px;
+                    }
+                    &:nth-child(2) {
+                        flex: 1;
+                        min-width: unset;
+                        max-width: 900px;
+                        padding: 20px;
+                    }
+                }
+            }
+        }
+        .step2 {
+            padding-right: 20px;
+            box-sizing: border-box;
+            width: 100vw;
+        }
+        .step3 {
+            padding: 0 20px;
+            box-sizing: border-box;
+            width: 100vw;
+        }
+    }
+}
