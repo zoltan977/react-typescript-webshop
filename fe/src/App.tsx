@@ -14,11 +14,24 @@ import { useEffect } from 'react';
 import { shoppingActions } from './shopping/store/actions';
 import {useDispatch} from 'react-redux';
 import ShoppingCart from './shopping/components/shopping-cart/shopping-cart';
+import { useCurrentUser } from './shared/hooks/useCurrentUser';
+import { authActions } from './auth/store/actions';
+import Private from './shared/components/routing/private/private';
+import UserAccount from './auth/components/user-account/user-account';
 
 const defaultMaterialTheme = createTheme();
 
 function App() {
   const dispatch = useDispatch();
+  const currentUser = useCurrentUser()
+  
+  useEffect(() => {
+    if (!!currentUser) {
+      dispatch(authActions.getUserAccountData())
+    } else {
+      dispatch(authActions.unSetUserAccountData())
+    }
+  }, [currentUser])
   
   useEffect(() => {
     dispatch(shoppingActions.getShoppingCart())
@@ -33,6 +46,9 @@ function App() {
           <Route path={routes.signup} element={<Signup />} />
           <Route path={routes.home} element={<Products />} />
           <Route path={routes.cart} element={<ShoppingCart />} />
+          <Route element={<Private />}>
+            <Route path={routes.userAccount} element={<UserAccount />} />
+          </Route>
           <Route path="*" element={<Navigate to={routes.home}/>} />
         </Routes>
         <ToastContainer />
