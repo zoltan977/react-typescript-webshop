@@ -1,0 +1,25 @@
+.component {
+    padding: 80px 20px 20px 20px;
+
+    h1 {
+        button {
+            float: right;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+
+        & > * {
+            flex: 1 1 calc(50% - 10px);
+            max-width: 900px;
+
+            &:nth-child(2) {
+                min-width: unset;
+            }
+        }
+    }
+}
