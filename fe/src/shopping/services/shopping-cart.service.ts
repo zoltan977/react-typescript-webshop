@@ -15,7 +15,8 @@ export const addToCart = async (product: Product): Promise<ShoppingCart | AppErr
     console.log("service addToCart product, quantity: ", product)
     const cartId = getCartId()
     return httpClient.post<ShoppingCart>(`${path}/add`, {product, cartId}).then(response => {
-        setCartId(response.data._id)
+        setCartId(response.data._id);
+        addToCartAnimation(product._id || "");   
         return newShoppingCartPromise(response.data)
     }).catch(serviceErrorHandler);
 };
@@ -59,3 +60,37 @@ const removeCartId = () => {
     return localStorage.removeItem(CART_ID_KEY)
 }
 
+const addToCartAnimation = (id: string) => {
+    const imgToClone: any = document.getElementById(id);
+    if (!imgToClone) {
+      return
+    }
+    const imgToCloneData = imgToClone.getBoundingClientRect();
+    const imgToCloneParent = imgToClone.parentElement;
+    if (!imgToCloneParent) {
+      return
+    }
+    const imgClone = imgToClone.cloneNode(false);
+
+    imgClone.style.position = 'fixed';
+    imgClone.style.zIndex = 9999;
+    
+    imgToCloneParent.appendChild(imgClone);
+
+    const addAnimation = imgClone.animate([{
+      left: `${imgToCloneData.left}px`,
+      top: `${imgToCloneData.top}px`,
+      width: `${imgToCloneData.width}px`,
+      height: `${imgToCloneData.height}px`
+    }, {
+      left: 'calc(100% - 50px)', 
+      top: 'calc(0% + 20px)', 
+      width: '20px', 
+      height: '20px', 
+      opacity: 0}], 
+    500)
+
+    addAnimation.onfinish = () => {
+      imgClone.remove()
+    }
+  }

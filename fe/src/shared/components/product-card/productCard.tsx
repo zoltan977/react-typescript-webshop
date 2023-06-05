@@ -31,6 +31,7 @@ const ProductCard: React.FC<ProductCardProps> = ({product, withoutActions}) => {
         title={product.title}
       />
       <CardMedia
+        id={product._id}
         sx={{ height: 400, backgroundSize: 'contain' }}
         image={product.imageURL || "/static/noimage.jpg"}
         title={product.title}
