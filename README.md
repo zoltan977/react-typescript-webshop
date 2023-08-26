@@ -22,7 +22,7 @@ Simple React webshop with fix product categories
 
 ## Demo
 
-You can test the running application on this [demo](https://react-webshop-30l0.onrender.com) link.
+You can test the running application on this [demo](https://react-webshop-30l0.onrender.com) link.(It may take a few minutes to start...)
 
 ## Tech-stack:
 
